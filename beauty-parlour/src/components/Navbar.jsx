@@ -89,22 +89,22 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-
         {/* Mobile Menu */}
-        {isOpen && (
-          <div className="md:hidden px-2 pt-2 pb-4 space-y-1 bg-black">
-            {mainMenu.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className="block px-3 py-2 rounded hover:bg-[#E1C699] font-semibold"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-        )}
-      </nav>
+      {/* Mobile Menu */}
+      {isOpen && (
+       <div className="md:hidden px-2 pt-2 pb-4 space-y-1 bg-black overflow-x-auto">
+       {mainMenu.map((item) => (
+        <a
+        key={item.name}
+        href={item.href}
+        className="block px-3 py-2 rounded hover:bg-[#E1C699] font-semibold whitespace-nowrap"
+        >
+        {item.name}
+       </a>
+      ))}
+     </div>
+  )}
+
 
       {/* Services Submenu Navbar */}
       <div className="bg-black overflow-x-auto whitespace-nowrap border-t-4 border-[#E1C699]">
