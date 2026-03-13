@@ -5,12 +5,12 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const mainMenu = [
-    { name: "Home", path: "/" },
-    { name: "About Us", path: "/about-us" },
-    { name: "Services", path: "/services" },
-    { name: "Contact Us", path: "/contact" },
-    { name: "Login", path: "/login" },
-    { name: "Register", path: "/register" },
+    { name: "Home", href: "#home" },
+    { name: "About Us", href: "#about" },
+    { name: "Services", href: "#services" },
+    { name: "Contact Us", href: "#contact" },
+    { name: "Login", href: "#login" },
+    { name: "Register", href: "#register" },
   ];
 
   const servicesMenu = [
@@ -24,7 +24,7 @@ export default function Navbar() {
     "Manicure",
   ];
 
-  const goldColor = "#E1C699"; // softer gold
+  const goldColor = "#E1C699";
 
   return (
     <header className="sticky top-0 z-50">
@@ -32,7 +32,7 @@ export default function Navbar() {
       <nav className="bg-black shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20 items-center">
-            {/* Logo with hover grow + glow effect */}
+            {/* Logo */}
             <div className="flex-shrink-0">
               <Link to="/">
                 <img
@@ -46,13 +46,13 @@ export default function Navbar() {
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8 font-serif text-lg">
               {mainMenu.map((item) => (
-                <Link
+                <a
                   key={item.name}
-                  to={item.path}
+                  href={item.href}
                   className="relative text-white hover:text-[#E1C699] transition transform hover:scale-110 hover:shadow-lg"
                 >
                   {item.name}
-                </Link>
+                </a>
               ))}
             </div>
 
@@ -61,7 +61,7 @@ export default function Navbar() {
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 type="button"
-                className="text-[#E1C699] hover:text-white focus:outline-none focus:text-white"
+                className="text-[#E1C699] hover:text-white focus:outline-none"
               >
                 <svg
                   className="h-6 w-6"
@@ -89,42 +89,38 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-        {/* Mobile Menu */}
-      {/* Mobile Menu */}
-      {isOpen && (
-       <div className="md:hidden px-2 pt-2 pb-4 space-y-1 bg-black overflow-x-auto">
-       {mainMenu.map((item) => (
-        <a
-        key={item.name}
-        href={item.href}
-        className="block px-3 py-2 rounded hover:bg-[#E1C699] font-semibold whitespace-nowrap"
-        >
-        {item.name}
-       </a>
-      ))}
-     </div>
-  )}
 
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="md:hidden px-2 pt-2 pb-4 space-y-1 bg-black overflow-x-auto">
+            {mainMenu.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="block px-3 py-2 rounded hover:bg-[#E1C699] font-semibold whitespace-nowrap"
+              >
+                {item.name}
+              </a>
+            ))}
+          </div>
+        )}
+      </nav>
 
       {/* Services Submenu Navbar */}
       <div className="bg-black overflow-x-auto whitespace-nowrap border-t-4 border-[#E1C699]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center space-x-4 py-3 font-serif text-sm md:text-base text-[#E1C699]">
+        <div className="max-w-7xl mx-auto px-4 flex justify-start md:justify-center space-x-4 py-3 font-serif text-sm md:text-base text-[#E1C699]">
           {/* Start marker */}
           <span className="font-bold">&lt;</span>
 
-          {servicesMenu.map((service) => {
-            // convert service name to lowercase dash path, e.g., "Hair Beauty" → "/hair-beauty"
-            const path = `/${service.toLowerCase().replace(/\s+/g, "-")}`;
-            return (
-              <Link
-                key={service}
-                to={path}
-                className="hover:text-white transition transform hover:scale-110 hover:shadow-lg"
-              >
-                {service}
-              </Link>
-            );
-          })}
+          {servicesMenu.map((service) => (
+            <a
+              key={service}
+              href={`#${service.toLowerCase().replace(/\s+/g, "-")}`}
+              className="inline-block hover:text-white transition transform hover:scale-110 hover:shadow-lg"
+            >
+              {service}
+            </a>
+          ))}
 
           {/* End marker */}
           <span className="font-bold">&gt;</span>
