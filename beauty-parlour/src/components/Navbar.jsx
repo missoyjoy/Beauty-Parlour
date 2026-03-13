@@ -62,7 +62,7 @@ export default function Navbar() {
                 className="text-[#E1C699] hover:text-white focus:outline-none relative z-50"
               >
                 <svg
-                  className="h-6 w-6"
+                  className="h-8 w-8"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -96,7 +96,7 @@ export default function Navbar() {
                 key={item.name}
                 to={item.path}
                 className="block px-3 py-2 rounded hover:bg-[#E1C699] font-semibold text-white"
-                onClick={() => setIsOpen(false)} // close menu on click
+                onClick={() => setIsOpen(false)}
               >
                 {item.name}
               </Link>
